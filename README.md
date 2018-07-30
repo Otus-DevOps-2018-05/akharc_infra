@@ -29,5 +29,20 @@ gcloud compute firewall-rules create default-puma-server --allow tcp:9292 \
   --source-ranges=0.0.0.0/0 \
   --target-tags=puma-server
 ```
-#Homework 5
+# Homework 5
 Added packer dir with packer template and variable files, created image with Ruby and Mongo in GCP for deploy reddit app
+
+# Homework 6
+Общее задание: установлен Terraform создано описание инфраструктуры базового проэкта с помощью файлов main.tf, terraform.tfvars и variables.tf
+Задание со *: Ключи для нескольки пользователей добавлены в метадату проэкта следующим образом:
+```
+resource "google_compute_project_metadata" "app" {
+  metadata {
+      ssh-keys = "appuser:${file(var.public_key_path)}appuser1:${file(var.public_key_path)}appuser2:${file(var.public_key_path)}"
+      #    appuser2:${file(var.public_key_path)}"
+      
+        }
+        }
+        
+```
+Иные ключи, присутствующие в метаданных, но не описанных с помощью terraform после terraform apply из метаданных удаляются.
