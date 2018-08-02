@@ -53,3 +53,21 @@ resource "google_compute_project_metadata" "app" {
 Error: Error locking state: Error acquiring the state lock: writing "gs://storage-bucket-akha/terraform/state/prod/default.tflock" failed: googleapi: Error 412: Precondition Failed, conditionNotMet
         
 ```
+# Homework 8
+
+Установлена система управления конфигурацией Ansible, созданы файлы inventory в различных форматах, создан файл конфигурации, опробована работ ansible напрямую из командной строки и через простой плейбук.
+
+Общее задание:
+Первое применение плейбука clone.yml не внесло изменеий в соответсвтии с принципом идемпотентности, т.к. каталог /home/appuser/reddit был ранее создан с помощью команды 
+
+```
+ansible app -m command -a 'git clone https://github.com/express42/reddit.git /home/appuser/reddit' 
+```
+После удаления описанного каталога в результате  запускп плейбука на удаленном хосте произошло  применнение изменений.
+
+Заднаие со *:
+ Создан файл инвентори в формате json, создан скрипт, кторый передает содержание инветори в ansible:
+```
+ansible all -m ping -i inventory.sh
+
+```
