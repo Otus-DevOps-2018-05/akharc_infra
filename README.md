@@ -46,3 +46,10 @@ resource "google_compute_project_metadata" "app" {
         
 ```
 Иные ключи, присутствующие в метаданных, но не описанных с помощью terraform после terraform apply из метаданных удаляются.
+# Homework 7
+Общее задание: Вместо общего main.tf конфигурация разбита на модули, описаны Stage и Prod, созданы бакеты
+Задание со *: Настроено удаленное хранение state-Файлов в бэкенде gcs. При одновременном применении появляется сообщение:
+```
+Error: Error locking state: Error acquiring the state lock: writing "gs://storage-bucket-akha/terraform/state/prod/default.tflock" failed: googleapi: Error 412: Precondition Failed, conditionNotMet
+        
+```

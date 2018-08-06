@@ -1,0 +1,36 @@
+{
+    "variables": {
+	    "prj_id" : null,
+	    "source_img" : null,
+	    "vm_type" : "f1-micro",
+	    "d_size":"10",
+	    "d_type":"",
+	    "tag":"puma-server",
+	    "net": "default",
+	    "img_descr": "Image with preinstalled ruby and mongodb puma app"
+    },
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{user `prj_id`}}",
+            "image_name": "reddit-app-base-{{timestamp}}",
+            "image_family": "reddit-app-base",
+            "source_image_family": "{{user `source_img`}}",
+            "zone": "europe-west1-b",
+            "ssh_username": "appuser",
+            "machine_type": "{{user `vm_type`}}",
+	    "disk_size": "{{user `d_size`}}",
+            "disk_type": "{{user `d_type`}}",
+            "tags": "{{user `tag`}}",
+            "network": "{{user `net`}}",
+            "image_description": "{{user `img_descr`}}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]	
+}
