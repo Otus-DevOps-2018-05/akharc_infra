@@ -20,4 +20,3 @@
         
     - name: Enable mongo
       systemd: name=mongod enabled=yes
-              
