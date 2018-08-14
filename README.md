@@ -71,3 +71,8 @@ ansible app -m command -a 'git clone https://github.com/express42/reddit.git /ho
 ansible all -m ping -i inventory.sh
 
 ```
+# Homework 9 
+Общее задание:
+Подготовлены общие  плейбуков для настройки инстансов с mongodb и приложением
+Общий плейбук разбит на несколько вложенных
+Написаны плейбуки для провиженига с помощью Packer
