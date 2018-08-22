@@ -85,3 +85,36 @@ ansible all -m ping -i inventory.sh
 структура каталогов приведена в соответствие с Best practices
 Для настройки stage-окружения использована комьюнити-роль jdauphant.nginx
 Подготовлен плейбук для создания пользователей, использующий зашифрованные данные с помощью ansible-vault
+
+#Homework 11
+
+Общее задание:
+Установлен и настроен Vagrant
+
+Первое задание со *
+В vagrantfile внесены изменения для того, чтобы nginx слушал 80 порт
+```
+        "nginx_sites": {
+          "default": [
+            "listen 80",
+            "server_name appserver",
+            "location / {
+              proxy_pass http://0.0.0.0:9292;
+            }"]
+        }
+```
+Установлена и настроена molecule, протестирована роль db
+Написан тест для проверки доступности порта mongodb
+```
+#chek if mongo is binded to 27017
+def test_mongo_socket(host):
+    host.socket("tcp://0.0.0.0:27017").is_listening
+```
+Настроена сборка шаблонов packer при помощи ролей
+
+```
+bash-4.2# packer validate -var-file=packer/variables.json  packer/app.json
+Template validated successfully.
+bash-4.2# packer validate -var-file=packer/variables.json  packer/db.json
+Template validated successfully.
+```
