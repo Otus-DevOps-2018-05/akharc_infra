@@ -1,13 +1,6 @@
 ---
-- name: install App prereq 
+- name: install App prereq
   hosts: all
   become: true
-  tasks:
-    - name: install ruby & bundler
-      apt:
-        name: "{{ packages }}"
-      vars:
-        packages:
-        - ruby-full
-        - ruby-bundler
-        - build-essential
+  roles:
+    - app
